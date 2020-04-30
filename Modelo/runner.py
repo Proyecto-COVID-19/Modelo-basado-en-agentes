@@ -13,8 +13,6 @@ class Runner():
         self.publico = pd.read_excel(ruta,sheet_name="publico")
         self.privado = pd.read_excel(ruta,sheet_name="privado")
         self.salida = pd.read_excel(ruta,sheet_name="probsalida")
-        self.transportepiv = pd.read_excel("../Datos/transportepiv.xlsx")
-        self.transportepub = pd.read_excel("../Datos/transportepub.xlsx")
 
         if not os.path.exists("Casillas_zona_"+str(m)+".json"):
             city_grid.create_grid(city=city, cell_size=m)
@@ -37,6 +35,8 @@ class Runner():
         
         n_agentes = round(suma*dens*0.001)
         print(n_agentes)
+        
+        porcentaje_infectados = 0.999
 
         self.acumedad= self.calc_acumedad(self.edades)
         self.transpub = self.calc_transpub(self.transporte)
@@ -44,15 +44,16 @@ class Runner():
         self.model = Ciudad(
             n_agentes, 
             self.Number_in_x, 
-            self.Number_in_y, 
+            self.Number_in_y,
+            porcentaje_infectados,
             self.densidad, 
             self.acumedad, 
             self.transpub, 
             self.edades, 
             self.transporte, 
             self.Casillas_zona, 
-            self.transportepiv, 
-            self.transportepub, 
+            self.privado, 
+            self.publico, 
             self.probasalida, 
             self.salida)
 
