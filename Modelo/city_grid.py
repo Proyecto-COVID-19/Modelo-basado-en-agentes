@@ -34,6 +34,7 @@ def create_grid(city, cell_size):
     grid_borders_y = [miny + i*(maxy-miny)/grid_h for i in range(grid_h + 1)]
 
     grid_zones = defaultdict(list)
+    grid_localidades = defaultdict(list)
 
     for i, j in product(range(grid_w), range(grid_h)):
         cell = Polygon([(grid_borders_x[i], grid_borders_y[j]),
@@ -45,13 +46,21 @@ def create_grid(city, cell_size):
         intersects = shp.intersects(cell)
         for loc in shp.loc[intersects, 'LocCodigo']:
             grid_zones[zones[loc]].append((i,j))
+            grid_localidades[loc].append((i,j))
 
         for k, v in grid_zones.items():
             grid_zones[k] = sorted(list(set(v)))
+            
+        for k, v in grid_localidades.items():
+            grid_localidades[k] = sorted(list(set(v)))
 
     with open('Casillas_zona_{}.json'.format(cell_size),
               'w') as outfile:
         json.dump(dict(grid_zones), outfile)
+        
+    with open('Casillas_localidad_{}.json'.format(cell_size),
+              'w') as outfile:
+        json.dump(dict(grid_localidades), outfile)
 
     with open('dim_grida_{}.pickle'.format(cell_size), 'wb') as h:
         pickle.dump((grid_w, grid_h), h)
