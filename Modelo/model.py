@@ -8,7 +8,7 @@ import random
 class ciudad(Model):
     "Inicialización del modelo"
     "Se necesita incluir la base de datos, suponiendo que tendremos varias ciudades para que la inicialización sea genérica"
-    def __init__(self,n,width,height,porcentaje_infectados, densidad, acumedad, transpub, edades, transporte, Casillas_zona, privado, publico, probasalida, salida):
+    def __init__(self,n,m,width,height,porcentaje_infectados, densidad, acumedad, transpub, edades, transporte, Casillas_zona, privado, publico, probasalida, salida,dias_cuarentena,long_paso):
         self.total_agentes = n #número de agentes a iniciar
         self.schedule = RandomActivation(self) #inicialización en paralelo de todos los agentes
         self.grid = MultiGrid(width,height,True) #creación de la grilla genérica
@@ -18,7 +18,7 @@ class ciudad(Model):
             n_id = random.random()
             estado = (2 if n_id > porcentaje_infectados else 1)
             tcontagio = (5 if estado == 2 else 0)
-            nuevo = personas(i,self,estado,tcontagio, densidad, acumedad, transpub, edades, transporte, Casillas_zona, privado, publico, probasalida, salida) #asignación del id
+            nuevo = personas(i,self,m,estado,tcontagio, densidad, acumedad, transpub, edades, transporte, Casillas_zona, privado, publico, probasalida, salida,dias_cuarentena, long_paso) #asignación del id
             self.schedule.add(nuevo) #creación del agente en el sistema
         
         "Configurar el recolector de datos"
@@ -28,7 +28,8 @@ class ciudad(Model):
                               "CE": recuento_ce,"NOR": recuento_nor,"NOC": recuento_noc,"SO": recuento_so,
                               "S": recuento_s,"0-4": recuento_ge1,"5-19": recuento_ge2,"20-39": recuento_ge3,
                               "40-59": recuento_ge4,">60": recuento_ge5,"En_cuarentena":en_cuarentena,"Vivos":agentes_vivos,
-                              "Día":dia,"Max_movs": max_pos,"Min_movs": min_pos,"Contactos_prom":prom_contactos}
+                              "Día":dia,"Max_movs": max_pos,"Min_movs": min_pos,"Contactos_prom_trabajo":prom_contactos_trabajo,
+                              "Contactos_prom_transporte":prom_contactos_transporte}
         )
     
     "Avanzar el modelo"
@@ -125,10 +126,15 @@ def recuento_ge5 (model): #grupo >=60
 
 #Cálculos globales
 import statistics as st
-def prom_contactos(model):
-    contactos = [agent.contactos for agent in model.schedule.agents]
+def prom_contactos_trabajo(model):
+    contactos = [agent.contactos_trabajo for agent in model.schedule.agents]
+    return st.mean(contactos)
+
+def prom_contactos_transporte(model):
+    contactos = [agent.contactos_transporte for agent in model.schedule.agents]
     return st.mean(contactos)
     
+
 def total_infectados(model):
     return infectados_leves(model) + infectados_graves(model) + infectados_criticos(model)
 

@@ -1,7 +1,7 @@
 import runner
 
 city = 'bogota'
-m = 250
+m = 1000
 
 
 rn = runner.Runner('../Datos/Datos para el modelov2.xlsx', city, m, 7715778,  1636)

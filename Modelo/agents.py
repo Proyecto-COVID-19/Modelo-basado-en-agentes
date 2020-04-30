@@ -6,21 +6,22 @@ import random
 import math
 
 class personas(Agent):
-        "Inicialización de los atributos del agente"
-        #Sexo: hombre o mujer
-        #Edad: se asigna de acuerdo con la distribución de la edad de la localidad a la que pertenece el agente.
-        #Mododetransporte: publico o privado
-        #Síntomas?: true si es sintomático, false dlc
-        #Estado: Tipo de contagio que toma los siguientes valores: no contagiado [1], contagio leve asintomático o sintomático[2], 
-        #contagio grave [3], contagio crítico [4], recuperado [5]
-        #TiempoRecuperacion: Tiempo de recuperación del paciente (días)
-        #TiempoContagiado: tiempo que lleva contagiado el agente
-        #Posición inicial: posición inicial del agente
-        #Posición final: posición final del agente
-        #zona: zona a la que pertenece
-        #Sale?: parametro de verificación si la persona se mueve afuera de su localidad
+        """Inicialización de los atributos del agente
+        Sexo: hombre o mujer
+        Edad: se asigna de acuerdo con la distribución de la edad de la localidad a la que pertenece el agente.
+        Mododetransporte: publico o privado
+        Síntomas?: true si es sintomático, false dlc
+        Estado: Tipo de contagio que toma los siguientes valores: no contagiado [1], contagio leve asintomático o sintomático[2], 
+        contagio grave [3], contagio crítico [4], recuperado [5]
+        TiempoRecuperacion: Tiempo de recuperación del paciente (días)
+        TiempoContagiado: tiempo que lleva contagiado el agente
+        Posición inicial: posición inicial del agente
+        Posición final: posición final del agente
+        zona: zona a la que pertenece
+        Sale?: parametro de verificación si la persona se mueve afuera de su localidad
+        """
     
-        def __init__(self, n_id, modelo, n_estado,t_contagio, densidad, acumedad, transpub, edades, transporte, Casillas_zona, privado, publico, probasalida, salida,dias_cuarentena,long_paso):
+        def __init__(self, n_id, modelo,m, n_estado, t_contagio, densidad, acumedad, transpub, edades, transporte, Casillas_zona, privado, publico, probasalida, salida,dias_cuarentena,long_paso):
             super().__init__(n_id,modelo)
             
             #Se definen los parámetros de la infección
@@ -32,6 +33,9 @@ class personas(Agent):
             self.tcontagio = t_contagio
             self.cuarentena = 0 #parámetro de la cuarentena. 1 hay cuarentena, 0 no hay cuarentena
             self.tcuarentena = 0 #tiempo en cuarentena
+            self.dias_cuarentena = dias_cuarentena
+            self.m = m
+            self.long_paso = long_paso
             
             #Se asigna el sexo: 1 - hombre, 2 - mujer
             numsex = random.random()
@@ -68,14 +72,14 @@ class personas(Agent):
             
         def set_zona(self, densidad): #método que asigna la zona para los agentes
             numdens = random.random()
-            acum = []
+            acumzonas = []
             #Crea la acumulada
             for fila in range(len(densidad["Zona"])):
                 if fila == 0:
-                    acum.append(densidad["Densidad"][fila])
+                    acumzonas.append(densidad["Densidad"][fila])
                 else:
-                    suma=densidad["Densidad"][fila]+ acum[fila-1]
-                    acum.append(suma)
+                    suma=densidad["Densidad"][fila]+ acumzonas[fila-1]
+                    acumzonas.append(suma)
             #Asigna la zona    
             for i in range(len(acumzonas)):
                 if i == 0:
@@ -121,7 +125,7 @@ class personas(Agent):
                         else:
                             if n < l[i]:
                                 self.posf = random.choice(Casillas_zona[trans[i]]) 
-                elif(self.edad > 60):
+                elif(self.edad >= 60):
                     l = acum_trans(trans,publico,">60",self.zona)
                     n = random.random()
                     for i in range(len(l)):
@@ -165,7 +169,7 @@ class personas(Agent):
                         else:
                             if n < l[i]:
                                 self.posf = random.choice(Casillas_zona[trans[i]]) 
-                elif(self.edad > 60):
+                elif(self.edad >= 60):
                     l = acum_trans(trans,privado,">60",self.zona)
                     n = random.random()
                     for i in range(len(l)):
@@ -209,7 +213,7 @@ class personas(Agent):
                         else:
                             self.sale = 2 
 
-        "Método para asignar el tipo de sintomas"
+        # "Método para asignar el tipo de sintomas"
         def set_sintomas(self): #Método que asigna la probabilidad de ser sintomático y asintomático
             numsint = random.random() 
             
@@ -217,8 +221,8 @@ class personas(Agent):
                 self.sintomas = 1
             else:
                 self.sintomas = 2
-
-        "Método para asignar el tipo de transporte dependiendo de la edad"
+    
+        # "Método para asignar el tipo de transporte dependiendo de la edad"
         def set_transporte(self, transpub, edades): #Método que asigna el modo de transporte
             #Primero la zona
             numtrans = random.random()
@@ -254,7 +258,7 @@ class personas(Agent):
                         else:
                             self.modtrans = 2
         
-        "Método para asignar la edad dependiendo de la zona"
+        # "Método para asignar la edad dependiendo de la zona"
         def set_edad(self, acumedad, edades): #Método que asigna la edad
             numedad = random.random()
             for fila in range(len(edades["Zona/Edad"])):
@@ -277,7 +281,7 @@ class personas(Agent):
                         if columna == 4:
                             if numedad >= acumulada[columna-1] and numedad < acumulada[columna]:
                                 self.edad = random.randrange(60,100)
-        "Método para eliminar a los agentes"
+        # "Método para eliminar a los agentes"
         def matar(self):
             #matar a los agentes. Pendiente de trabajo futuro es tener modelado la hospitalización
             try:
@@ -322,7 +326,7 @@ class personas(Agent):
             except:
                 print("Está intentando eliminar a alguien que ya no está, pero el programa seguirá corriendo.")
         
-        "Método actualización de estados"
+        # "Método actualización de estados"
         def actualizar_tiempos_estados(self,tiempo_cuarentena):
             if self.estado == 2 and self.tcontagio >= 5: #cambia de leve a grave o crítico
                 s1 = random.random()
@@ -369,8 +373,9 @@ class personas(Agent):
         def step(self):
             self.contactos_trabajo = 0
             self.contactos_transporte = 0
+            m = self.m
             respuesta = True
-            tiempo_cuarentena = (dias_cuarentena if respuesta == True else 0)
+            tiempo_cuarentena = (self.dias_cuarentena if respuesta == True else 0)
             dia_inicio = 18
             porcentaje_cuarentena = 0.86
             if self.model.schedule.time == dia_inicio and respuesta == True:
@@ -384,7 +389,7 @@ class personas(Agent):
             cuadros = (abs(self.pos[0]-self.posf[0])+abs(self.pos[1]-self.posf[1]))
             vel = (vel_carro if self.modtrans == 1 else vel_tm)
             tviaje = cuadros *(1/vel)
-            self.mtrabajo(tviaje,long_paso)
+            self.mtrabajo(tviaje,self.long_paso)
             
             #viaja en zona
             n_posx =int( self.pos[0] + round(random.uniform(-8,8)))
@@ -393,26 +398,26 @@ class personas(Agent):
             cuadros = (abs(self.pos[0]-n_posx)+abs(self.pos[1]-n_posy))
             vel = vel_wk
             tviaje = cuadros *(1/vel)
-            self.mzona(tviaje,long_paso,[n_posx,n_posy])
+            self.mzona(tviaje,self.long_paso,[n_posx,n_posy])
             
             #viaja de devuelta a casa
             cuadros = (abs(self.pos[0]-self.posin[0])+abs(self.pos[1]-self.posin[1]))
             vel = (vel_carro if self.modtrans == 1 else vel_tm)
             tviaje = cuadros *(1/vel)
-            self.mcasa(tviaje,long_paso)
+            self.mcasa(tviaje,self.long_paso)
             
             #actualización
             self.matar()
             self.actualizar_tiempos_estados(tiempo_cuarentena)
         
-       "Organizar la cuarentena de un porcentaje de la población"
+    #    "Organizar la cuarentena de un porcentaje de la población"
         def activar_cuarentena(self,activar_cuarentena,porcentaje_en_cuarentena,tiempo_en_cuarentena):
             if activar_cuarentena == True:
                 r = random.random()
                 if(r<porcentaje_en_cuarentena): #a un porcentaje de la población les restringe la movilidad
                     self.cuarentena = 1
         
-         "Construcción del método de infectar"
+        #  "Construcción del método de infectar"
         def infectar(self):
             if self.estado == 2 and self.tcontagio >= 5:
                 agentes = self.model.grid.get_cell_list_contents([self.pos])
@@ -431,7 +436,7 @@ class personas(Agent):
                                 if (s <= 0.098 * 0.5):
                                     agente.estado = 2
                                     self.infectados +=1
-        "Construcción del método de mover en zona"
+        # "Construcción del método de mover en zona"
         def mzona(self, tiempo, intervalo,poszona):
             if self.estado != 3 and self.estado != 4 and self.cuarentena == 0:
                 count = 0
@@ -545,6 +550,23 @@ class personas(Agent):
                                 self.infectar()
                             count += 1
                             movs -= 1
+
+def acum_trans(l1,lbase,ledad,lzona):
+    #l1 es la base de nombres de las zonas
+    #lbase es la base de datos para calcular la acumulada
+    #ledad es el rango de edad en string. P.ej: "5-19"
+    #lzona es la zona del agente
+    matching = [s for s in lbase if ledad in s]
+    l = []
+    for t in range(len(l1)):
+        if (l1[t]==lzona):
+            for j in range(len(matching)):
+                if(j==0):
+                    l.append(lbase[matching[j]][t])
+                else:
+                    suma = lbase[matching[j]][t] + l[j-1]
+                    l.append(suma)
+    return l
 
 import math
 def euc_dist(a,b): #Calcula la distancia eucliadiana entre dos puntos. a y b son dos tuplas con las posicioanes iniciales (a) y finnales(b)

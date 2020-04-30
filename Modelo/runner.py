@@ -1,6 +1,6 @@
 import json
 import pickle
-from model import Ciudad
+from model import ciudad
 import pandas as pd
 import os
 import city_grid
@@ -37,12 +37,15 @@ class Runner():
         print(n_agentes)
         
         porcentaje_infectados = 0.999
+        dias_cuarentena = 40
+        long_paso = 10
 
         self.acumedad= self.calc_acumedad(self.edades)
         self.transpub = self.calc_transpub(self.transporte)
         self.probasalida = self.calc_probsalida(self.salida)
-        self.model = Ciudad(
-            n_agentes, 
+        self.model = ciudad(
+            n_agentes,
+            m,
             self.Number_in_x, 
             self.Number_in_y,
             porcentaje_infectados,
@@ -55,7 +58,9 @@ class Runner():
             self.privado, 
             self.publico, 
             self.probasalida, 
-            self.salida)
+            self.salida,
+            dias_cuarentena,
+            long_paso)
 
     def calc_acumedad(self, edades):
         acumedad = {}
