@@ -15,6 +15,7 @@ class Runner():
         self.salida = pd.read_excel(ruta,sheet_name="probsalida")
 
         if not os.path.exists("Casillas_zona_"+str(m)+".json"):
+            print('Creando grida para m={}'.format(m))
             city_grid.create_grid(city=city, cell_size=m)
         with open("Casillas_zona_"+str(m)+".json") as json_file:
             self.Casillas_zona = dict(json.load(json_file))
@@ -33,11 +34,11 @@ class Runner():
         for key in self.Casillas_zona.keys():
             suma += len(self.Casillas_zona[key])
         
-        n_agentes = round(suma*dens*0.001)
+        n_agentes = round(suma*dens*0.01)
         print(n_agentes)
         
         porcentaje_infectados = 0.999
-        dias_cuarentena = 40
+        dias_cuarentena = 0
         long_paso = 10
 
         self.acumedad= self.calc_acumedad(self.edades)

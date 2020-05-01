@@ -36,6 +36,7 @@ class personas(Agent):
             self.dias_cuarentena = dias_cuarentena
             self.m = m
             self.long_paso = long_paso
+            self.nuevo_infectado = 0
             
             #Se asigna el sexo: 1 - hombre, 2 - mujer
             numsex = random.random()
@@ -374,7 +375,7 @@ class personas(Agent):
             self.contactos_trabajo = 0
             self.contactos_transporte = 0
             m = self.m
-            respuesta = True
+            respuesta = False
             tiempo_cuarentena = (self.dias_cuarentena if respuesta == True else 0)
             dia_inicio = 18
             porcentaje_cuarentena = 0.86
@@ -407,6 +408,7 @@ class personas(Agent):
             self.mcasa(tviaje,self.long_paso)
             
             #actualización
+            self.nuevo_infectado = (1 if self.estado==2 and self.tcontagio ==0 else 0)
             self.matar()
             self.actualizar_tiempos_estados(tiempo_cuarentena)
         
@@ -603,4 +605,4 @@ def moverxy(posi,posf,paso): #Método para calcular la mejor ruta entre dos punt
                 coords.append([n_posx,n_posy])
                 dists.append(dist2)
     index_min = np.argmin(dists)
-    return coords[index_min]
+    return tuple(coords[index_min])

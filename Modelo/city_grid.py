@@ -46,7 +46,7 @@ def create_grid(city, cell_size):
         intersects = shp.intersects(cell)
         for loc in shp.loc[intersects, 'LocCodigo']:
             grid_zones[zones[loc]].append((i,j))
-            grid_localidades[loc].append((i,j))
+            grid_localidades[int(loc)].append((i,j))
 
         for k, v in grid_zones.items():
             grid_zones[k] = sorted(list(set(v)))
