@@ -15,7 +15,17 @@ Esta librería permite:
 ## Tabla de contenidos:
 
 1. [Documentación](#documentacion)  
-2. [Citación](#citacion)  
+2. [Citación](#citacion) 
+3. [Colabore con nosotros](#colaboracion)
+4. [Instalación](#instalacion)
+    - [Con pip](#pip)
+    - [Con conda](#conda)
+    - [Problemas comunes](#problemas)
+    - [Test de instalación](#tests)
+    - [Colaboración en Google colab](#colab)
+5. [Tutoriales](#tutoriales)
+5. [Ejemplos](#ejemplos)
+
 
 <a name="documentacion"/>
 
@@ -29,3 +39,43 @@ La documentación de las clases y funciones de SISCOVID-ABM está disponible en:
 Si usted utiliza la librería por favor citar el siguiente paper:
 
 > Felipe Montes, Jose D. Meisel, Pablo Lemoine, Diana R. Higuera, Andrés F. Useche, Sofía del C. Baquero, Juliana Quintero, Diego A. Martínez, Laura Idrobo, Ana M. Jaramillo, Juan D. Umaña, Diana Erazo, Daniel Duque, Andrea Alarcón, Carolina Rojas, Olga L. Sarmiento, Santiago Ortiz, Julián Castro, Gustavo Martínez, Juan Sosa, John K. Giraldo, Fabián C. Peña, Camilo Montes, Juan S. Guerrero & Esperanza Buitrago. **SISCOVID: modelos de sistemas complejos para contribuir a disminuir la transmisión de SARS-CoV-2 en contextos urbanos de colombia**, 2020
+
+<a name="colaboracion"/>
+
+## Colabore con nosotros
+`SISCOVID-ABM` es un prouecto activo y las colaboraciones son bienvenidas. 
+Si usted quiere ser parte del proyecto o crear colaboraciones para otras intervenciones no dude en contactarnos.
+
+<a name="instalacion"/>
+
+## Instalación
+
+<a name="pip"/>
+
+### Con pip
+
+<a name="conda"/>
+
+### Con conda
+
+<a name="problemas"/>
+
+### Problemas comunes
+
+<a name="tests"/>
+
+### Test de instalación
+
+<a name="colab"/>
+
+### Colaboración en Google colab
+
+<a name="tutoriales"/>
+
+## Tutoriales
+
+<a name="ejemplos"/>
+
+## Ejemplos
+
+
