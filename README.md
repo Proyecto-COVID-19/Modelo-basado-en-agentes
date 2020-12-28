@@ -20,7 +20,7 @@ Esta librería permite:
 <a name="documentacion"/>
 
 ## Documentación
-La documentación de las clases y funciones de SISCOVID-ABM está disponible en:
+La documentación de las clases y funciones de SISCOVID-ABM está disponible en: https://siscovid.com/
 
 
 <a name="citacion"/>
