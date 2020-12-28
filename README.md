@@ -7,6 +7,6 @@ El modelo de agentes desarrollado en python del proyecto SISCOVID permite apoyar
 Simular el comportamiento de la pandemia en contextos urbanos a través de dos modelos computacionales que incorporan la movilidad de los ciudadanos y las dinámicas de infección por grupos de edad y estratos socioeconómicos específicos a 4 ciudades de Colombia.
 
 ### Modelo 1: Modelo de infección Susceptible-Expuesto-Infectado-Recuperado (SEIR)
-![](logo-main.png)
+![](Modelo_SEIR_conceptual.png)
 
 ### Modelo 2: Modelo basado en agentes sobre mobilidad de ciudadanos y dinámicas de contagio
