@@ -43,7 +43,7 @@ Si usted utiliza la librería por favor citar el siguiente paper:
 <a name="colaboracion"/>
 
 ## Colabore con nosotros
-`SISCOVID-ABM` es un prouecto activo y las colaboraciones son bienvenidas. 
+`SISCOVID-ABM` es un proyecto activo y las colaboraciones son bienvenidas. 
 Si usted quiere ser parte del proyecto o crear colaboraciones para otras intervenciones no dude en contactarnos.
 
 <a name="instalacion"/>
