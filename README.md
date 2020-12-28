@@ -11,3 +11,15 @@ Esta librería permite:
 - Simular la mobilidad de multiples agentes en la grilla
 - Simular diferentes decisiones de movimiento y estados de infección de los agentes
 - Diseñar y simular intervenciones de mitigación de la transmisión de infecciones.
+
+## Tabla de contenidos:
+
+1. [Documentación](#documentacion)  
+2. [Citación](#citacion)  
+
+<a name="documentacion"/>
+
+## Documentación
+
+<a name="citacion"/>
+## Citación
