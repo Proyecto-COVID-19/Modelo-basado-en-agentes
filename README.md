@@ -78,4 +78,6 @@ Si usted quiere ser parte del proyecto o crear colaboraciones para otras interve
 
 ## Ejemplos
 
+### 1. Crear la grilla a partir del archivo de geopandas:
+
 
