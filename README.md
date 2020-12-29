@@ -80,4 +80,5 @@ Si usted quiere ser parte del proyecto o crear colaboraciones para otras interve
 
 ### 1. Crear la grilla a partir del archivo de geopandas:
 
-
+![](Mapa_ciudad.png)
+![](Mapa_grilla.png)
