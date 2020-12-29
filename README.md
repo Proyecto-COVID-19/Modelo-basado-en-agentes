@@ -79,5 +79,8 @@ Si usted quiere ser parte del proyecto o crear colaboraciones para otras interve
 ## Ejemplos
 
 ### 1. Crear la grilla a partir del archivo de geopandas:
+
+A partir de un archivo geopandas con el mapa de la ciudad y sus correspondientes zonas/comunas/barrios creamos una grilla con el tamaño en metros especificado y seleccionamos una zona/barrio/comuna particular. En el siguiente ejemplo se encuentra en el mapa de la ciudad de Cartagena, en azul la zona/comuna/barrio escogido y en rosado una celda de la zona seleccionada aleatoreamente.
+
 <img src="https://github.com/SISCOVID/Modelo-basado-en-agentes/blob/master/Mapa_ciudad.png" width="400">
 <img src="https://github.com/SISCOVID/Modelo-basado-en-agentes/blob/master/Mapa_grilla.png" width="400">
