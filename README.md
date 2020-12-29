@@ -79,6 +79,5 @@ Si usted quiere ser parte del proyecto o crear colaboraciones para otras interve
 ## Ejemplos
 
 ### 1. Crear la grilla a partir del archivo de geopandas:
-
-![](Mapa_ciudad.png)
-![](Mapa_grilla.png)
+<img src="https://github.com/SISCOVID/Modelo-basado-en-agentes/master/Mapa_ciudad.png" width="48">
+<img src="https://github.com/SISCOVID/Modelo-basado-en-agentes/master/Mapa_grilla.png" width="48">
