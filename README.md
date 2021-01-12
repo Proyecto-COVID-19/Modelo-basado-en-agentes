@@ -96,8 +96,8 @@ from shapely.geometry import Polygon
 
 A partir de un archivo geopandas con el mapa de la ciudad y sus correspondientes zonas/comunas/barrios creamos una grilla con el tamaño en metros especificado y seleccionamos una zona/barrio/comuna particular. En el siguiente ejemplo se encuentra en el mapa de la ciudad de Cartagena, en azul la zona/comuna/barrio escogido, en rosado una celda de la zona seleccionada aleatoreamente y la cada cuadro de  la grilla con 1 km de ancho/largo.
 
+Leer el archivo shapes de la ciudad y guardar las comunas:
 ```python
-#Leer el archivo shapes de la ciudad y guardar las comunas:
 shp2 = gpd.read_file(os.path.join('..','Datos',ciudad,'Shapes','ucg.shp'))
 comunas = []
 ucgs = shp2['UCG'].values
@@ -105,13 +105,26 @@ for ucg in ucgs:
     comunas.append('COMUNA ' + str(int(ucg)))
 shp2['comuna'] = comunas
 ```
-
+Objeto geopandas:
 ```
     UCG LOC  AREA_HA                                           geometry  comuna
 0    3.0  LH   202.00  POLYGON ((-75.52126 10.44286, -75.52123 10.442...   COMUNA 3
 1    2.0  LH   367.69  POLYGON ((-75.52572 10.44107, -75.52626 10.438...   COMUNA 2
 2    1.0  LH   741.96  MULTIPOLYGON (((-75.53969 10.41866, -75.53962 ...   COMUNA 1
 3    6.0  LV   974.82  MULTIPOLYGON (((-75.45372 10.41313, -75.45337 ...   
+```
+Con la función de crear_grilla se crea un diccionario con las llaves de las comunas/localidades y las celdas que están dentro:
+```
+{'COMUNA 1': [(0, 11),
+  (0, 12),
+  (0, 13),
+  (1, 11),
+  (1, 12),
+  (1, 13),
+  (1, 14),
+  (1, 15),
+  (1, 16),
+  (2, 11)
 ```
 
 <img src="https://github.com/SISCOVID/Modelo-basado-en-agentes/blob/master/Mapa_ciudad.png" width="400">
