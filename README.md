@@ -126,6 +126,7 @@ Con la función de crear_grilla se crea un diccionario con las llaves de las com
   (1, 16),
   (2, 11)
 ```
+Este objeto de guarda en el archivo _Casillas_comunas_Ciudad_Tamaño_casilla.json_ para ingresar en el modelo.
 
 <img src="https://github.com/SISCOVID/Modelo-basado-en-agentes/blob/master/Mapa_ciudad.png" width="400">
 <img src="https://github.com/SISCOVID/Modelo-basado-en-agentes/blob/master/Mapa_grilla.png" width="400">
