@@ -132,7 +132,21 @@ Este objeto se guarda en el archivo _Casillas_comunas_Ciudad_Tamaño_casilla.jso
 <img src="https://github.com/SISCOVID/Modelo-basado-en-agentes/blob/master/Mapa_grilla.png" width="400">
 
 ### 2. Crear los atributos de un agente:
+El agente es una persona que comenzará a moverse dentro de la grilla creada en el paso anterior. Los atributos que los agentes tienen son:
+
+<div class="foo">
+| Variable | Valores posibles|
+| :---:   | ---- |
+| Sexo | Hombre o mujer |
+| Edad | Grupo etario |
+| Modo de transporte | Público o privado |
+| Síntomas | Si tiene síntomas o no |
+| Estado   | no contagiado[1], contagio leve asintomático o sintomático[2], contagio grave [3], contagio crítico [4], recuperado [5] |
+| Sexo | Hombre o mujer |
+| Sexo | Hombre o mujer |
+</div>
 
 ### 3. Correr los los modelos de infección:
+
 
 
