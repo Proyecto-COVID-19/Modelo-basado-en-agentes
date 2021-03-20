@@ -94,7 +94,7 @@ from shapely.geometry import Polygon
 
 ### 1. Crear la grilla a partir del archivo de geopandas:
 
-A partir de un archivo geopandas con el mapa de la ciudad y sus correspondientes zonas/comunas/barrios creamos una grilla con el tamaño en metros especificado y seleccionamos una zona/barrio/comuna particular. En el siguiente ejemplo se encuentra en el mapa de la ciudad de Cartagena, en azul la zona/comuna/barrio escogido, en rosado una celda de la zona seleccionada aleatoreamente y la cada cuadro de  la grilla con 1 km de ancho/largo.
+A partir de un archivo geopandas con el mapa de la ciudad y sus correspondientes zonas/comunas/barrios creamos una grilla con el tamaño en metros especificado y seleccionamos una zona/barrio/comuna particular. En el siguiente ejemplo se encuentra en el mapa de la ciudad de Cartagena, en azul la zona/comuna/barrio escogido, en rosado una celda de la zona seleccionada aleatoreamente y cada cuadro de  la grilla con 1 km de ancho/largo.
 
 Leer el archivo shapes de la ciudad y guardar las comunas:
 ```python
@@ -126,11 +126,13 @@ Con la función de crear_grilla se crea un diccionario con las llaves de las com
   (1, 16),
   (2, 11)
 ```
-Este objeto de guarda en el archivo _Casillas_comunas_Ciudad_Tamaño_casilla.json_ para ingresar en el modelo.
+Este objeto se guarda en el archivo _Casillas_comunas_Ciudad_Tamaño_casilla.json_ para ingresar en el modelo.
 
 <img src="https://github.com/SISCOVID/Modelo-basado-en-agentes/blob/master/Mapa_ciudad.png" width="400">
 <img src="https://github.com/SISCOVID/Modelo-basado-en-agentes/blob/master/Mapa_grilla.png" width="400">
 
+### 2. Crear los atributos de un agente:
 
+### 3. Correr los los modelos de infección:
 
 
