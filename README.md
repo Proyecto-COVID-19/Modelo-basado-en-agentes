@@ -134,7 +134,6 @@ Este objeto se guarda en el archivo _Casillas_comunas_Ciudad_Tamaño_casilla.jso
 ### 2. Crear los atributos de un agente:
 El agente es una persona que comenzará a moverse dentro de la grilla creada en el paso anterior. Los atributos que los agentes tienen son:
 
-<div class="foo">
 | Variable | Valores posibles|
 | :---:   | ---- |
 | Sexo | Hombre o mujer |
@@ -142,9 +141,14 @@ El agente es una persona que comenzará a moverse dentro de la grilla creada en 
 | Modo de transporte | Público o privado |
 | Síntomas | Si tiene síntomas o no |
 | Estado   | no contagiado[1], contagio leve asintomático o sintomático[2], contagio grave [3], contagio crítico [4], recuperado [5] |
-| Sexo | Hombre o mujer |
-| Sexo | Hombre o mujer |
-</div>
+| Tiempo de recuperacion | Días para recuperarse |
+| Tiempo contagiado | Tiempo que el paciente lleva contagiado |
+| Posición inicial | Posición inicial del agente en la grilla |
+| Posición final | Posición final del agente en la grilla |
+| Zona | Zona/Barrio/Comuna del agente |
+| Sale |:Si el agente se mueve de su localidad o no|
+
+
 
 ### 3. Correr los los modelos de infección:
 
